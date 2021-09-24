@@ -1,0 +1,37 @@
+import RPi.GPIO as GPIO
+dac = [26, 19, 13, 6, 5, 11, 9, 10]
+bits = len(dac)
+maxVoltage = 3.3
+def decimal2binary(decimal):
+     return [int(bit) for bit in bin(decimal)[2:].zfill(bits)]
+def bin2dac(value):
+     signal = decimal2binary(value)
+     GPIO.output(dac, signal)
+     return signal
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(dac, GPIO.OUT, initial = GPIO.LOW)
+try:
+    value = 0
+             if value >= levels:
+                    print("The value is too large, try again)
+                    continue
+    while True:
+             for i in range(256):
+                   
+                   signal = bin2dac(value)
+                   value += 1
+             for i in range(256):
+                   
+                   signal = bin2dac(value)
+                   value -= 1
+
+expect KeyboardInterrupt:
+    print("The programm was stopped by the keyboard")
+else:
+    print("No exceptions")
+finally:
+    GPIO.output(dac, GPIO.LOW)
+    GPIO.cleanup(dac)
+    print("GPIO cleanup completed")
+     
+    
