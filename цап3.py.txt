@@ -1,0 +1,35 @@
+import RPi.GPIO as GPIO
+a = 2
+maxVoltage = 3.3
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(a, GPIO.OUT)
+p = GPIO.PWM(a, 1000)
+try:
+    while True:
+         inputStr = input("Enter a value between 0 and 100 ('q' to exit) > ")
+         if inputStr.isdigit():
+             value = float(inputStr) 
+             if value > 0 or value < 0:
+                    print("The value is uncorrect, try again)
+                    continue
+             p.ChangeDutyCycle(value)
+             voltage = value / 100 * maxVoltage
+             print("Entered value = {:^3} -> {}, output voltage = {:.2f}".format(value, voltage) )
+
+         elif inputStr == 'q':
+             break
+         else:
+             prnit("Enter a positive integer")
+             continue 
+
+
+expect KeyboardInterrupt:
+    print("The programm was stopped by the keyboard")
+else:
+    print("No exceptions")
+finally:
+    p.stop()
+    GPIO.cleanup(a)
+    print("GPIO cleanup completed")
+     
