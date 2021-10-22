@@ -13,7 +13,7 @@ voltage_array = tmp[0]*data_array
 for i in range(len(voltage_array)):
     time_array.append(i*tmp[1])
 
-ax.plot(time_array, voltage_array, "m", linewidth = '1.0', marker = '*', markevery=50, markersize = '13.0')
+ax.plot(time_array, voltage_array, "m", linewidth = '1.0', marker = '*', markevery=50, markersize = '12.0')
 
 ax.set_xlim([min(time_array), 1.1*max(time_array)])
 ax.set_ylim([min(voltage_array), 1.1*max(voltage_array)])
